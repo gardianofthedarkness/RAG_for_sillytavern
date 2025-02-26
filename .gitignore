@@ -1,0 +1,6 @@
+node_modules/ 
+logs/ 
+data/ 
+public/cache/ 
+plugins/rag-memory/docker-compose.yml 
+.env 
