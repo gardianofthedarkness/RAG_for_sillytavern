@@ -11477,3 +11477,49 @@ jQuery(async function () {
 
     initCustomSelectedSamplers();
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const ragToggle = document.getElementById("ragDrawerToggle");
+    const ragPanel = document.getElementById("rag-right-nav-panel");
+
+    if (!ragToggle || !ragPanel) {
+        console.error("❌ RAG Memory elements not found in the DOM.");
+        return;
+    }
+
+    // Ensure the RAG panel is hidden initially
+    ragPanel.style.display = "none";
+
+    // Toggle the RAG panel when clicking the button
+    ragToggle.addEventListener("click", (event) => {
+        event.stopPropagation(); // Prevents bubbling up
+        const isHidden = ragPanel.style.display === "none";
+
+        // Hide all other drawer panels before showing RAG panel
+        document.querySelectorAll(".drawer-content").forEach(panel => {
+            if (panel !== ragPanel) {
+                panel.style.display = "none";
+            }
+        });
+
+        // Toggle only RAG panel
+        ragPanel.style.display = isHidden ? "flex" : "none";
+    });
+
+    // Close the RAG panel when clicking outside of it
+    document.addEventListener("click", (event) => {
+        if (!ragPanel.contains(event.target) && !ragToggle.contains(event.target)) {
+            ragPanel.style.display = "none";
+        }
+    });
+
+    // Ensure clicking other drawer buttons closes RAG panel
+    document.querySelectorAll(".drawer-toggle").forEach(drawer => {
+        if (drawer !== ragToggle) {
+            drawer.addEventListener("click", () => {
+                ragPanel.style.display = "none";
+            });
+        }
+    });
+});
+

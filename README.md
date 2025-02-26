@@ -20,3 +20,6 @@ It is an **independent experimental plugin** that extends SillyTavern with **ret
 
 ## 🔧 How to Contribute
 Feel free to **submit pull requests** or open an **issue** to discuss improvements!
+
+git add plugins/rag-memory/docker-compose.yml
+git commit -m "Added missing docker-compose.yml to test-initiate-docker branch"
