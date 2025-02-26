@@ -1,0 +1,14 @@
+node_modules/
+/uploads/
+.DS_Store
+/thumbnails
+secrets.json
+/dist
+/backups/
+/data
+/cache
+access.log
+.github
+.vscode
+.git
+/public/scripts/extensions/third-party

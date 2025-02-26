@@ -1,0 +1,86 @@
+dataRoot: ./data
+cardsCacheCapacity: 100
+listen: false
+protocol:
+  ipv4: true
+  ipv6: false
+dnsPreferIPv6: false
+autorunHostname: auto
+port: 8000
+autorunPortOverride: -1
+whitelistMode: true
+enableForwardedWhitelist: true
+whitelist:
+  - ::1
+  - 127.0.0.1
+basicAuthMode: false
+basicAuthUser:
+  username: user
+  password: password
+enableCorsProxy: false
+requestProxy:
+  enabled: false
+  url: socks5://username:password@example.com:1080
+  bypass:
+    - localhost
+    - 127.0.0.1
+enableUserAccounts: false
+enableDiscreetLogin: false
+autheliaAuth: false
+perUserBasicAuth: false
+sessionTimeout: 86400
+cookieSecret: whzYKEI01QbXUkxERbe3PG0WkN2Cd6OiCbWK2g+fVEjYxNsVDbY7r/YI4Dp2FS+mpPXw66TC3tftOuahKyHHiQ==
+disableCsrfProtection: false
+securityOverride: false
+autorun: true
+avoidLocalhost: false
+backups:
+  common:
+    numberOfBackups: 50
+  chat:
+    enabled: true
+    maxTotalBackups: -1
+    throttleInterval: 10000
+thumbnails:
+  enabled: true
+  format: jpg
+  quality: 95
+  dimensions:
+    bg:
+      - 160
+      - 90
+    avatar:
+      - 96
+      - 144
+allowKeysExposure: false
+skipContentCheck: false
+whitelistImportDomains:
+  - localhost
+  - cdn.discordapp.com
+  - files.catbox.moe
+  - raw.githubusercontent.com
+requestOverrides: []
+enableExtensions: true
+enableExtensionsAutoUpdate: true
+enableDownloadableTokenizers: true
+extras:
+  disableAutoDownload: false
+  classificationModel: Cohee/distilbert-base-uncased-go-emotions-onnx
+  captioningModel: Xenova/vit-gpt2-image-captioning
+  embeddingModel: Cohee/jina-embeddings-v2-base-en
+  speechToTextModel: Xenova/whisper-small
+  textToSpeechModel: Xenova/speecht5_tts
+promptPlaceholder: "[Start a new chat]"
+openai:
+  randomizeUserId: false
+  captionSystemPrompt: ""
+deepl:
+  formality: default
+mistral:
+  enablePrefix: false
+ollama:
+  keepAlive: -1
+claude:
+  enableSystemPromptCache: false
+  cachingAtDepth: -1
+enableServerPlugins: true
