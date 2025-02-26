@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  qdrant:
+    image: qdrant/qdrant
+    container_name: qdrant-db
+    restart: always
+    ports:
+      - "6333:6333"
+
+  postgres:
+    image: postgres:15
+    container_name: postgres-db
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: rag_db
+    ports:
+      - "5432:5432"
