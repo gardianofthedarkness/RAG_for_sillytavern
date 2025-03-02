@@ -782,6 +782,11 @@ body .panelControlBar {
     order: 2;
 }
 
+#sendToPlugin {
+    color: #F89406;
+    background-color: #222;
+}
+
 #mes_continue {
     order: 1;
 }

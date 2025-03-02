@@ -1950,6 +1950,42 @@ export async function reloadCurrentChat() {
 }
 
 /**
+ * Send the current message to RAG-plugin
+ */
+export async function sendToPlugin() {
+    const textInput = document.getElementById("send_textarea").value.trim();
+    if (!textInput) {
+        console.warn("No input text detected.");
+        return;
+    }
+
+    try {
+        // 🔹 Send user input to the FastAPI plugin
+        const response = await fetch("http://127.0.0.1:8000/fetch_context", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" }, // The fucking location of request header
+            body: JSON.stringify({ prompt: textInput }),
+        });
+
+        // 🔹 Parse the response
+        const data = await response.json();
+        if (!data || !data.tokens) { // The fucking tokens being returned
+            // data.tokens is a fucking string (related sentences in back story)
+            console.warn("No related tokens returned from RAG.");
+            return;
+        }
+
+        // 🔹 Store the hidden tokens (in a private variable)
+        window.hiddenTokens = data.tokens; // Storing globally in window object for later use
+
+        console.log("Retrieved tokens from RAG:", data.tokens); // Debugging
+
+    } catch (error) {
+        console.error("Error fetching from RAG plugin:", error);
+    }
+}
+
+/**
  * Send the message currently typed into the chat box.
  */
 export async function sendTextareaMessage() {
@@ -1960,7 +1996,7 @@ export async function sendTextareaMessage() {
     let generateType;
     // "Continue on send" is activated when the user hits "send" (or presses enter) on an empty chat box, and the last
     // message was sent from a character (not the user or the system).
-    const textareaText = String($('#send_textarea').val());
+    const textareaText = document.getElementById("send_textarea").value.trim();
     if (power_user.continue_on_send &&
         !hasPendingFileAttachment() &&
         !textareaText &&
@@ -9823,6 +9859,12 @@ jQuery(async function () {
     });
 
     $('#send_but').on('click', function () {
+        sendTextareaMessage();
+    });
+
+    $('#sendToPlugin').on('click', function () {
+        // The plug in will run
+        sendToPlugin();
         sendTextareaMessage();
     });
 
