@@ -3,6 +3,7 @@
 # Make sure pwd is the directory of the script
 cd "$(dirname "$0")"
 
+# Check if npm is installed
 if ! command -v npm &> /dev/null
 then
     read -p "npm is not installed. Do you want to install nodejs and npm? (y/n)" choice
@@ -27,6 +28,18 @@ fi
 echo "Installing Node Modules..."
 export NODE_ENV=production
 npm i --no-audit --no-fund --loglevel=error --no-progress --omit=dev
+
+# Check if FastAPI and Uvicorn are installed
+if ! python3 -c "import fastapi" &> /dev/null; then
+    echo "Installing FastAPI and dependencies..."
+    pip3 install --upgrade fastapi uvicorn
+fi
+
+# Start FastAPI server for RAG plugin
+echo "Starting RAG Plugin API..."
+nohup uvicorn plugins.rag_plugin:app --host 0.0.0.0 --port 8000 --reload &
+
+sleep 2  # Ensure FastAPI starts before SillyTavern
 
 echo "Entering SillyTavern..."
 node "server.js" "$@"

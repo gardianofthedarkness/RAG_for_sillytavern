@@ -1,0 +1,25 @@
+INFO:     Will watch for changes in these directories: ['/Users/samuelyao/github repos/zhuqiguangdick/RAG_for_sillytavern']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [21510] using StatReload
+ERROR:    Error loading ASGI app. Could not import module "plugins.rag_plugin".
+INFO:     Stopping reloader process [21510]
+INFO:     Will watch for changes in these directories: ['/Users/samuelyao/github repos/zhuqiguangdick/RAG_for_sillytavern']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [21739] using StatReload
+INFO:     Started server process [21742]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Shutting down
+INFO:     Finished server process [21742]
+INFO:     Stopping reloader process [21739]
+INFO:     Will watch for changes in these directories: ['/Users/samuelyao/github repos/zhuqiguangdick/RAG_for_sillytavern']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [22347] using StatReload
+INFO:     Started server process [22350]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [22350]
+INFO:     Stopping reloader process [22347]
