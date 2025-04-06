@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar/Navbar";
 import DefaultIdeas from "./components/DefaultIdea/DefaultIdeas";
 import UserQuery from "./components/UserInput/UserQuery";
 import GptIntro from "./components/Ui/TopMenu";
+import TopMenuButton from "./components/Ui/TopMenuButton";
 import { IonIcon, setupIonicReact } from "@ionic/react";
 import { menuOutline, addOutline } from "ionicons/icons";
 import Header from "./components/Header/Header";
@@ -11,6 +12,9 @@ import classNames from "classnames";
 import Chats from "./components/Chat/Chats";
 import Modal from "./components/modals/Modal";
 import Apikey from "./components/modals/Apikey";
+import Panel from "./components/Panels/Panel";
+import GeneralSettings from "./components/Panels/General";
+
 
 setupIonicReact();
 function App() {
@@ -19,6 +23,9 @@ function App() {
   const addNewChat = useChat((state) => state.addNewChat);
   const userHasApiKey = useAuth((state) => state.apikey);
   const [theme] = useTheme((state) => [state.theme]);
+  // The state for all panel
+  const [activePanel, setActivePanel] = useState<null | "settings" | "characters" | "users">(null);
+  // The state for mini panel
 
   useEffect(() => {
     if (theme === "dark") {
@@ -51,26 +58,24 @@ function App() {
       </div>
       <main
         className={classNames(" w-full transition-all duration-500", {
-          "md:ml-[260px]": active,
+          "md:ml-[0px]": active,
         })}
       >
         {/* Hold on, this is the header for the menu */}
-        {/* We build button based on these buttons */}
-        {/* https://www.youtube.com/watch?v=IF6k0uZuypA&ab_channel=Fireship */}
         {isChatsVisible ? (
           <Header />
         ) : (
-          <GptIntro>
-            <button className="px-3 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded text-sm">
-              General Settings
-            </button>
-            <button className="px-3 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded text-sm">
-              Character Management
-            </button>
-            <button className="px-3 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded text-sm">
-              Users Management
-            </button>
-          </GptIntro>
+        <GptIntro>
+          <TopMenuButton label="General Settings" onClick={() => setActivePanel("settings")} />
+          <TopMenuButton label="Character Management" onClick={() => setActivePanel("characters")} />
+          <TopMenuButton label="Users Management" onClick={() => setActivePanel("users")} />
+
+          <Panel visible={activePanel === "settings"} onClose={() => setActivePanel(null)} title="General Settings">
+            <GeneralSettings />
+          </Panel>
+
+          
+        </GptIntro>
         )}
         {isChatsVisible && <Chats />}
         <div
@@ -78,9 +83,9 @@ function App() {
             "fixed left-0 px-2  right-0 transition-all duration-500 bottom-0 dark:shadow-lg py-1 shadow-md backdrop-blur-sm bg-white/10 dark:bg-dark-primary/10",
             {
               "dark:bg-dark-primary bg-white": isChatsVisible,
-              "md:ml-[260px]": active,
+              "md:ml-[0px]": active,
             }
-          )}
+          )} 
         >
           <div className="max-w-2xl md:max-w-[calc(100% - 260px)] mx-auto">
             {!isChatsVisible && (

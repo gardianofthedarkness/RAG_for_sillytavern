@@ -13,16 +13,16 @@ export default function GptIntro({ children }: { children: ReactNode }) {
 
   return (
     <>
-      {/* 🔥 Top Menu Bar - now customizable */}
       <div className="flex justify-center gap-4 mt-5">
         {children} {/* <- insert custom buttons from parent */}
         <button
-          title="GPT - 4"
-          className="uppercase rounded p-2 transition dark:text-white bg-white dark:bg-dark-primary border-2 dark:border-white border-gray-700 flex items-center justify-center gap-2"
+          title="GPT-4"
+          className="uppercase rounded p-2 transition dark:text-white dark:bg-dark-primary border-2 dark:border-white border-gray-700 flex items-center justify-center gap-2"
           disabled
         >
           <IonIcon icon={sparkles} />
-          <span>gpt - 4</span>
+          {/* Hold up, this need dynamic change */}
+          <span>Using: gpt-4</span>
         </button>
       </div>
 

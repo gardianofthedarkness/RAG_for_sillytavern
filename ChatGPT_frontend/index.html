@@ -2,8 +2,28 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <title>ZhuQiGuang <3</title>
     <link rel="icon" type="image/svg+xml" href="/imgs/bot.webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- 🧼 PREVENT WHITE FLASH -->
+    <style>
+      html, body {
+        background-color: #343541;
+        color: white;
+      }
+    </style>
+    <script>
+      if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
+
+    <!-- Fonts + Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,9 +37,9 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <title>ZhuQiGuang <3</title>
   </head>
-  <body class="dark:bg-[#343541]">
+
+  <body>
     <div id="root"></div>
     <div id="modal"></div>
     <script type="module" src="/src/main.tsx"></script>
