@@ -15,17 +15,30 @@ import Apikey from "./components/modals/Apikey";
 import Panel from "./components/Panels/Panel";
 import GeneralSettings from "./components/Panels/General";
 
+import Button from "./components/Ui/button";
 
 setupIonicReact();
 function App() {
+
+  // return (
+  //   <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+  //     <Button style={{ backgroundColor: "#808080", color: "#111" }}>
+  //       Test Inline
+  //     </Button>
+  //   </div>
+  // )
+
+
   const [active, setActive] = useState(false);
   const isChatsVisible = useChat(chatsLength);
   const addNewChat = useChat((state) => state.addNewChat);
   const userHasApiKey = useAuth((state) => state.apikey);
   const [theme] = useTheme((state) => [state.theme]);
   // The state for all panel
-  const [activePanel, setActivePanel] = useState<null | "settings" | "characters" | "users">(null);
+  const [activePanel, setActivePanel] = useState<null | string>(null);
   // The state for mini panel
+  const [activeMiniPanel, setActiveMiniPanel] = useState<null | string>(null);
+
 
   useEffect(() => {
     if (theme === "dark") {
@@ -66,15 +79,70 @@ function App() {
           <Header />
         ) : (
         <GptIntro>
+          {/* General settings */}
           <TopMenuButton label="General Settings" onClick={() => setActivePanel("settings")} />
-          <TopMenuButton label="Character Management" onClick={() => setActivePanel("characters")} />
-          <TopMenuButton label="Users Management" onClick={() => setActivePanel("users")} />
-
-          <Panel visible={activePanel === "settings"} onClose={() => setActivePanel(null)} title="General Settings">
-            <GeneralSettings />
+          <Panel
+            visible={activePanel === "settings"}
+            onClose={() => {
+              setActivePanel(null);
+              setActiveMiniPanel(null);
+            }}
+            onEmptyClick={() => {
+              setActiveMiniPanel(null); // 👈 this will close the mini panel when empty space clicked
+            }}
+            title="General Settings"
+          >
+            <GeneralSettings
+              activeMiniPanel={activeMiniPanel}
+              setActiveMiniPanel={setActiveMiniPanel}
+            />
           </Panel>
 
           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+          <TopMenuButton label="Character Management" onClick={() => setActivePanel("characters")} />
+          <TopMenuButton label="Users Management" onClick={() => setActivePanel("users")} />
         </GptIntro>
         )}
         {isChatsVisible && <Chats />}
