@@ -52,6 +52,7 @@ export default function SettingsTab({ visible }: { visible: boolean }) {
     setApiKey(newApiKey);
     setEditApiKey(false);
   }
+  
   function handleChatsFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;

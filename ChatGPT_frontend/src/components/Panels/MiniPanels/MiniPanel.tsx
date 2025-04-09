@@ -10,6 +10,7 @@ export default function MiniPanel({ visible, onClose, children }: MiniPanelProps
     const [shouldRender, setShouldRender] = useState(false);
     const [animate, setAnimate] = useState(false);
   
+    // The appearing effect
     useEffect(() => {
       if (visible) {
         setShouldRender(true);
