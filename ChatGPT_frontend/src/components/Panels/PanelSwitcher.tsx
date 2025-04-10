@@ -25,7 +25,7 @@ export default function PanelSwitcher({
   
     if (visible) {
       setShouldRender(true);
-      timeout = setTimeout(() => setAnimate(true), 10);
+      timeout = setTimeout(() => setAnimate(true), 20);
     } else {
       setAnimate(false);
       timeout = setTimeout(() => {
