@@ -27,7 +27,7 @@ export default function MiniPanel({ visible, onClose, children }: MiniPanelProps
     if (!shouldRender) return null;
   
     return (
-      <div className="fixed top-0 right-[580px] mt-12 z-[999] pointer-events-none">
+      <div className="fixed top-0 right-[610px] mt-12 z-[999] pointer-events-none">
         {/* Background Gradient */}
         <div
           className={`

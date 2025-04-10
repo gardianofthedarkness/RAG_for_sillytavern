@@ -14,7 +14,7 @@ import Modal from "./components/modals/Modal";
 import Apikey from "./components/modals/Apikey";
 import Panel from "./components/Panels/Panel";
 import GeneralSettings from "./components/Panels/General";
-
+import PanelSwitcher from "./components/Panels/PanelSwitcher";
 import Button from "./components/Ui/button";
 
 setupIonicReact();
@@ -80,67 +80,60 @@ function App() {
         ) : (
         <GptIntro>
           {/* General settings */}
+          {/* General settings */}
           <TopMenuButton label="General Settings" onClick={() => setActivePanel("settings")} />
-          <Panel
+
+          <PanelSwitcher
             visible={activePanel === "settings"}
-            onClose={() => {
-              setActivePanel(null);
-              setActiveMiniPanel(null);
-            }}
-            onEmptyClick={() => {
-              setActiveMiniPanel(null); // 👈 this will close the mini panel when empty space clicked
-            }}
-            title="General Settings"
-          >
-            <GeneralSettings
-              activeMiniPanel={activeMiniPanel}
-              setActiveMiniPanel={setActiveMiniPanel}
-            />
-          </Panel>
-
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            onClose={() => setActivePanel(null)}
+            activeMiniPanel={activeMiniPanel}
+            setActiveMiniPanel={setActiveMiniPanel}
+          />
 
 
           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           <TopMenuButton label="Character Management" onClick={() => setActivePanel("characters")} />
           <TopMenuButton label="Users Management" onClick={() => setActivePanel("users")} />
         </GptIntro>

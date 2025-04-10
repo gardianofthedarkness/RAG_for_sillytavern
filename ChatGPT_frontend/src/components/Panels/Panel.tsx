@@ -1,4 +1,5 @@
 import { ReactNode, useEffect } from "react";
+import classNames from "classnames";
 
 interface PanelProps {
   title?: string;
@@ -6,6 +7,7 @@ interface PanelProps {
   onClose: () => void;
   children: ReactNode;
   onEmptyClick?: () => void; // ✅ Optional click-away for inner space
+  className?: string; // ✅ add this
 }
 
 export default function Panel({
@@ -14,6 +16,7 @@ export default function Panel({
   onClose,
   children,
   onEmptyClick,
+  className = "", // ✅ default to empty string
 }: PanelProps) {
   // Prevent background scroll while panel is open
   useEffect(() => {
@@ -38,9 +41,11 @@ export default function Panel({
       {/* Panel container (stop click propagation so clicks inside don't close the panel) */}
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`fixed top-0 right-0 h-full w-full max-w-[580px] bg-white dark:bg-[#1f1f1f] shadow-lg transform transition-transform duration-500 ease-in-out z-50
-          ${visible ? "translate-x-0" : "translate-x-full"}
-        `}
+        className={classNames(
+          "fixed top-0 right-0 h-full w-full max-w-[610px] bg-white dark:bg-[#1f1f1f] shadow-lg transform transition-transform duration-500 ease-in-out z-50",
+          visible ? "translate-x-0" : "translate-x-full",
+          className // ✅ now it accepts external animation or layout overrides
+        )}
       >
         {/* Scrollable inner content */}
         <div
@@ -50,10 +55,10 @@ export default function Panel({
             const isInsideInteractive = (e.target as HTMLElement).closest(
               "button, input, select, textarea, label, [data-no-close]"
             );
-            
+
             if (!isInsideInteractive && onEmptyClick) {
               onEmptyClick();
-            }            
+            }
           }}
         >
           <div className="flex items-center justify-between mb-4">

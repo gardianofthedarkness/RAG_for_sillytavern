@@ -2,15 +2,20 @@ import { useState } from "react";
 import MiniPanel from "./MiniPanels/MiniPanel";
 import Button from "../Ui/button"
 import SectionFrame from "../Ui/sectionframe";
+import ChainOfThoughtList from "./DynamicList/List";
 
 interface GeneralSettingsProps {
   activeMiniPanel: string | null;
   setActiveMiniPanel: React.Dispatch<React.SetStateAction<string | null>>;
+  onEnterChain: () => void; // Important!
 }
+
+
 
 export default function GeneralSettings({
   activeMiniPanel,
   setActiveMiniPanel,
+  onEnterChain,
 }: GeneralSettingsProps) {
   const [showThoughts, setShowThoughts] = useState(false);
   const [contextSize, setContextSize] = useState(512);
@@ -52,7 +57,7 @@ export default function GeneralSettings({
           <Button color="indigo">Export</Button>
         </div>
         <label className="block text-sm font-medium mb-1">Select Saved Preset</label>
-        <select className="w-full p-2 rounded border dark:bg-gray-800 dark:text-white">
+        <select className="w-full p-2 rounded border dark:bg-gray-800 dark:text-white focus:outline-none">
           <option disabled selected>Default</option>
           <option>Preset 1</option>
           <option>Preset 2</option>
@@ -413,7 +418,7 @@ export default function GeneralSettings({
           </div>
         </div>
         
-        <select className="w-full p-2 rounded border dark:bg-gray-800 dark:text-white">
+        <select className="w-full p-2 rounded border dark:bg-gray-800 dark:text-white focus:outline-none">
           <option disabled selected>Select Logit bias config</option>
           <option>Default</option>
           <option>Strict Ban v1</option>
@@ -432,8 +437,20 @@ export default function GeneralSettings({
 
 
 
+      {/* Custom Chain-Of-Thought */}
+      <SectionFrame title="">
+        <Button
+          description="Custom user defined LLM behaviour"
+          color="slate"
+          onClick={onEnterChain} // ✅ triggers panel switch
+        >
+          Custom Chain-of-Thought
+        </Button>
 
 
+          
+
+      </SectionFrame>
 
 
 
